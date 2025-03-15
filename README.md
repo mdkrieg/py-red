@@ -44,10 +44,18 @@ So far my working philosophy has been this:
   * soft rule, I expect to dig through the nodejs source eventually
 
 ## What next?
-Nearest term:
+
+**Nearest term:**
 * Move the node implementations into the nodes folder, currently in lib/runtime.py
-Near term:
+
+**Near term:**
 * Finish implementing other nodes
 * Hear what others online have to say, would love if this becomes something useful
-Far term:
+
+**Far term:**
+* Start adding cool stuff as nodes.
+  * Very excited about the idea of being able to make tkinter UIs that are programmed via flows.
+ 
+**Farther term:**
 * Why does Flask tell me to not use in production? Need to research what this WSGI thing is... for me though, "production-ready" is not a big concern for my typical use.
+* Do the same for other trendy languages? Maybe Golang?!
