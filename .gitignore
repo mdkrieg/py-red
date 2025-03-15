@@ -1,3 +1,12 @@
+# custom ignores for this project
+editor-api/
+editor-client-master/
+node-ref/
+node-ref-min/
+flows-ref.json
+.flows-ref.json.backup
+
+# ----- BEGIN STANDARD GITHUB PYTHON IGNORE TEMPLATE -----
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

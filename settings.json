@@ -1,0 +1,75 @@
+{
+    "codeEditor": {
+        "lib": "monaco",
+        "options": {
+        }
+    },
+    "context": {
+        "default": "memory",
+        "stores": [
+            "memory"
+        ]
+    },
+    "diagnostics": {
+        "enabled": true,
+        "ui": true
+    },
+    "editorTheme": {
+        "languages": [
+            "de",
+            "en-US",
+            "es-ES",
+            "fr",
+            "ja",
+            "ko",
+            "pt-BR",
+            "ru",
+            "zh-CN",
+            "zh-TW"
+        ],
+        "palette": {
+        },
+        "projects": {
+            "enabled": false,
+            "workflow": {
+                "mode": "manual"
+            }
+        }
+    },
+    "externalModules": {
+    },
+    "flowEncryptionType": "system",
+    "flowFilePretty": true,
+    "functionExternalModules": true,
+    "functionTimeout": 0,
+    "httpNodeRoot": "/",
+    "libraries": [
+        {
+            "icon": "font-awesome/fa-hdd-o",
+            "id": "local",
+            "label": "editor:library.types.local",
+            "user": false
+        },
+        {
+            "icon": "font-awesome/fa-life-ring",
+            "id": "examples",
+            "label": "editor:library.types.examples",
+            "readOnly": true,
+            "types": [
+                "flows"
+            ],
+            "user": false
+        }
+    ],
+    "markdownEditor": {
+        "mermaid": {
+            "enabled": true
+        }
+    },
+    "runtimeState": {
+        "enabled": false,
+        "ui": false
+    },
+    "tlsConfigDisableLocalFiles": false,
+    "version": "4.0.9"
+}
