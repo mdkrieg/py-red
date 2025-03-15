@@ -6,6 +6,8 @@ node-ref-min/
 flows-ref.json
 .flows-ref.json.backup
 
+# NOTE - had to unexclude lib/ from the standard list, it is used in the nodes folder as well as the root
+
 # ----- BEGIN STANDARD GITHUB PYTHON IGNORE TEMPLATE -----
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -23,7 +25,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
