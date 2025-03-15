@@ -3,7 +3,7 @@ Python implementation of Node-RED
 
 ***BETA VERSION* - very much still in early development**
 
-Developed on: (btw - I have no reason to think linux or other modern browsers or python versions wouldn't work, but you never know)
+Developed on: (btw - I have no reason to think linux or other modern browsers or python versions >=3 wouldn't work, but you never know)
 * Windows 10 22H2 (19045.5608)
 * Google Chrome Version 134.0.6998.89 (Official Build) (64-bit)
 * Python 3.13.2 (64-bit)
