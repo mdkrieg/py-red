@@ -7,11 +7,10 @@ from glob import glob
 from flask import Flask, render_template, render_template_string, request, Response
 from flask_sock import Sock
 from lib.mustache import mustache_template
-import importlib
 import lib.runtime as runtime
 from html.parser import HTMLParser
 
-theme = {
+theme_json = {
     "asset": {
         "main": "red/main.min.js",
         "red": "red/red.min.js",
@@ -106,8 +105,8 @@ def index():
     return out
 
 @app.route("/theme")
-def theme():
-    return theme
+def theme_route():
+    return theme_json
 
 @app.route("/settings")
 def settings():
@@ -128,38 +127,46 @@ def plugin_messages():
 def nodes():
     accept = request.headers.get("Accept")
     if accept == "application/json":
-        nodes = list()
-        getname_re = re.compile(r"\d*-?([a-z-]+)\.html?", re.I)
-        for nodetemplatepath in glob(os.path.join("nodes","core","*","*.html")):
-            name = getname_re.match(os.path.basename(nodetemplatepath)).group(1)
-            with open(nodetemplatepath) as f:
-                parser = NodeHTMLParser(f.read())
-                nodes.append({
-                    "id": f"node-red/{name}",
+        out:dict[str,dict] = {}
+        for name, node_class in runtime.node_lib.items():
+            if len(node_class.modpath) <= 2: continue
+            id = f"node-red/{node_class.modname}"
+            if id in out:
+                out[id]["types"].append(name)
+            else:
+                out[id] = {
+                    "id": id,
                     "name": name,
-                    "types": parser.types or [name],
+                    "types": [name],
                     "enabled": True,
                     "local": False,
                     "user": False,
                     "module": "node-red",
                     "version": "4.0.9"
-                })
-        return nodes
+                }
+        return list(out.values())
     # elif accept == "text/html":
     else:
-        out = bytes()
-        for nodetemplatepath in glob(os.path.join("nodes","core","*","*.html")):
+        all_mods:dict[str,bytes] = {}
+        for name, node_class in runtime.node_lib.items():
+            out = bytes()
+            # base node class and tab class get no parent
+            if len(node_class.modpath) < 4: continue
+            # since we can have multiple node classes in a single file, check if the file has already been appended
+            if node_class.__module__ in all_mods: continue
+            nodefolder = node_class.modpath[2]
+            nodefile = node_class.modpath[3] + ".html"
             # get the corresponding locale path (help files)
-            nodecoresubpath, nodefile = os.path.split(nodetemplatepath)
-            nodefolder = os.path.split(nodecoresubpath)[1]
+            nodetemplatepath = os.path.join("nodes","core",nodefolder,nodefile)
             nodehelppath = os.path.join("nodes","locales","en-US",nodefolder,nodefile)
-            out += f"<!-- {nodetemplatepath} -->".encode("utf-8")
+            out += f"\r\n<!-- {nodefolder}/{nodefile} -->\r\n".encode("utf-8")
             with open(nodetemplatepath, "rb") as f:
                 out += f.read()
             if os.path.exists(nodehelppath):
                 with open(nodehelppath, "rb") as f:
                     out += f.read()
-        return out
+            all_mods[node_class.__module__] = out
+        return "\r\n".encode("utf-8").join(all_mods.values())
 
 @app.route("/nodes/messages")
 def node_messages():
@@ -243,7 +250,7 @@ def websocket(ws):
         }
     ]
     runtime.attach_websocket(ws)
-    ws.send(start_msg)
+    ws.send(json.dumps(start_msg))
     while True:
         data = json.loads(ws.receive())
         if "subscribe" in data:
@@ -270,3 +277,24 @@ def debug_node(nodeid, state):
     if state == "disable":
         debugnode.disable()
         return "success"
+
+user_routes = {}
+def register_node_route(node_instance):
+    user_routes[node_instance.definition["url"]] = node_instance
+
+@app.route("/nodes/<url>")
+async def user_node_route(url):
+    # had to do this here because Flask didn't like me using the request object outside of context, or something like that
+    url = "/" + url
+    if url in user_routes:
+        node_instance = user_routes[url]
+        msg = {
+            "request": request
+        }
+        responses = await node_instance.input(msg)
+        return responses
+    else:
+        return f"user node route '{url}' not found", 404
+    # 
+    # couldn't get the below to work, going to take a different approach
+    # app.view_functions[path] = handle_node_route

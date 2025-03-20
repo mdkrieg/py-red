@@ -28,6 +28,9 @@
             "zh-TW"
         ],
         "palette": {
+            "catalogues":[
+                "/catalogue"
+            ]
         },
         "projects": {
             "enabled": false,

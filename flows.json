@@ -32,7 +32,8 @@
         "y": 80,
         "wires": [
             [
-                "bd56eae47efeea30"
+                "bd56eae47efeea30",
+                "8d78caa31864051d"
             ]
         ]
     },
@@ -49,8 +50,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 80,
+        "x": 640,
+        "y": 40,
         "wires": []
     },
     {
@@ -87,7 +88,7 @@
         "type": "debug",
         "z": "86300ba0fede331e",
         "name": "debug 2",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": true,
@@ -142,6 +143,334 @@
         "statusType": "auto",
         "x": 620,
         "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8d78caa31864051d",
+        "type": "debug",
+        "z": "86300ba0fede331e",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "692503ca7bbddf70",
+        "type": "comment",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "info": "Hello World!",
+        "x": 620,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "24ef69a42f5a4542",
+        "type": "file in",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "filename": "E:\\temp\\flows.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "d59572a638d4e0ce"
+            ]
+        ]
+    },
+    {
+        "id": "a5a5b0670b8c1620",
+        "type": "inject",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 260,
+        "wires": [
+            [
+                "24ef69a42f5a4542"
+            ]
+        ]
+    },
+    {
+        "id": "d59572a638d4e0ce",
+        "type": "debug",
+        "z": "86300ba0fede331e",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8fb0f3d9e1f719f6",
+        "type": "file",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "filename": "E:\\temp\\test.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 560,
+        "y": 340,
+        "wires": [
+            [
+                "5d474cbd56d4269f"
+            ]
+        ]
+    },
+    {
+        "id": "5cccba0d1ab0cad7",
+        "type": "inject",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "8fb0f3d9e1f719f6"
+            ]
+        ]
+    },
+    {
+        "id": "5d474cbd56d4269f",
+        "type": "debug",
+        "z": "86300ba0fede331e",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "00c4daaa43b46ad3",
+        "type": "csv",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 710,
+        "y": 460,
+        "wires": [
+            [
+                "5a4e9ce211506fe4"
+            ]
+        ]
+    },
+    {
+        "id": "801742f1bc3dd416",
+        "type": "file in",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "filename": "E:\\temp\\foo.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "00c4daaa43b46ad3"
+            ]
+        ]
+    },
+    {
+        "id": "00d3f66a3716fd38",
+        "type": "inject",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 460,
+        "wires": [
+            [
+                "801742f1bc3dd416"
+            ]
+        ]
+    },
+    {
+        "id": "5a4e9ce211506fe4",
+        "type": "debug",
+        "z": "86300ba0fede331e",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c1c0d2506bf52248",
+        "type": "http in",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "url": "/foo",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 340,
+        "y": 600,
+        "wires": [
+            [
+                "f4dd019cbd632474",
+                "f1a12b439af1cf62"
+            ]
+        ]
+    },
+    {
+        "id": "f4dd019cbd632474",
+        "type": "debug",
+        "z": "86300ba0fede331e",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8754efd0ca5c4a60",
+        "type": "http response",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f1a12b439af1cf62",
+        "type": "file in",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "filename": "E:\\temp\\foo.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 640,
+        "y": 600,
+        "wires": [
+            [
+                "8754efd0ca5c4a60",
+                "4b7ae73c2d528787"
+            ]
+        ]
+    },
+    {
+        "id": "4b7ae73c2d528787",
+        "type": "debug",
+        "z": "86300ba0fede331e",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 680,
         "wires": []
     }
 ]
