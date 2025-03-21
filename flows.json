@@ -472,5 +472,22 @@
         "x": 900,
         "y": 680,
         "wires": []
+    },
+    {
+        "id": "b028c67fb29202b8",
+        "type": "tkinter",
+        "z": "86300ba0fede331e",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} !",
+        "output": "str",
+        "x": 600,
+        "y": 800,
+        "wires": [
+            []
+        ]
     }
 ]

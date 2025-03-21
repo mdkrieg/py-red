@@ -1,0 +1,114 @@
+
+<script type="text/html" data-template-name="tk-root">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <div style="display: inline-block; width: calc(100% - 105px)"><input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name"></div>
+    </div>
+</script>
+<script type="text/html" data-template-name="tk-frame">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <div style="display: inline-block; width: calc(100% - 105px)"><input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name"></div>
+    </div>
+</script>
+<script type="text/html" data-template-name="tk-label">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <div style="display: inline-block; width: calc(100% - 105px)"><input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name"></div>
+    </div>
+</script>
+<script type="text/html" data-template-name="tk-button">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <div style="display: inline-block; width: calc(100% - 105px)"><input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name"></div>
+    </div>
+</script>
+<script type="text/html" data-template-name="tk-radio">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <div style="display: inline-block; width: calc(100% - 105px)"><input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name"></div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tk-root',{
+        color:"rgb(200, 200, 200)",
+        category: 'tkinter',
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "tk.svg",
+        label: function() {
+            return this.name||"tk root";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+    RED.nodes.registerType('tk-frame',{
+        color:"rgb(200, 200, 200)",
+        category: 'tkinter',
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "tk.svg",
+        label: function() {
+            return this.name||"tk frame";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+    RED.nodes.registerType('tk-label',{
+        color:"rgb(200, 200, 200)",
+        category: 'tkinter',
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "tk.svg",
+        label: function() {
+            return this.name||"tk label";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+    RED.nodes.registerType('tk-button',{
+        color:"rgb(200, 200, 200)",
+        category: 'tkinter',
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "tk.svg",
+        label: function() {
+            return this.name||"tk button";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+    RED.nodes.registerType('tk-radio',{
+        color:"rgb(200, 200, 200)",
+        category: 'tkinter',
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "tk.svg",
+        label: function() {
+            return this.name||"tk radio";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>

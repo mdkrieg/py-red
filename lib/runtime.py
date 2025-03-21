@@ -20,8 +20,9 @@ def load_flows(flows_data = None):
     # organize the flow data into a dictionary of ID's with their usable classes
     for n in flows_data:
         if not n["type"] in node_lib:
-            raise Exception(f"invalid node encountered {n['type']}")
-        flows[n["id"]] = node_lib[n["type"]](n)
+            flows[n["id"]] = node_lib["unknown"](n)
+        else:
+            flows[n["id"]] = node_lib[n["type"]](n)
     # attach the wires, has to be done in a second loop so all the nodes are existing
     for n in flows.values():
         # n.attach_wires()
